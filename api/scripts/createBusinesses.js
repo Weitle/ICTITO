@@ -1,15 +1,12 @@
 const db = require('./db');
 
 const sql = `
-    create table if not exists businesses(
-        business_id char(20) not null primary key,
-        business_name varchar(100) not null,
-        business_department varchar(10) not null,
-        account_manager varchar(10) not null,
-        phone char(11) not null,
-        service_type tinyint unsigned not null,
-        independent boolean not null default 0,
-        description text
+    create table if not exists contracts(
+        contract_id varchar(50) not null primary key,
+        contract_name varchar(100) not null,
+        contract_department varchar(10) not null,
+        business_id char(20),
+        foreign key (business_id) references businesses(business_id)
     )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 `;
 
