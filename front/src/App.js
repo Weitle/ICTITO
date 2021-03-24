@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import Projects from './components/projects/Projects';
 import NotFound from './components/NotFound';
 import Engineers from './components/engineers/Engineers';
+import Businesses from './components/businesses/Businesses';
+import BusinessAdd from './components/businesses/BusinessAdd';
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <Navbar />
       <div className="container mt-3">
         <Switch>
+          <Route path="/businesses/add" component={BusinessAdd} />
+          <Route path="/businesses" component={Businesses} />
           <Route path="/engineers" component={Engineers} />
           <Route path="/projects" component={Projects} />
           <Route path="/" exact component={Home} />

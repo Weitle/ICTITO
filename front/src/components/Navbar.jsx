@@ -17,7 +17,10 @@ const Navbar = () => {
                         <NavLink className="nav-link" to="/engineers">智网工程师</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/projects">项目管理</NavLink>
+                        <NavLink className="nav-link" to="/projects">项目</NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/businesses">商机</NavLink>
                     </li>
                 </ul>
             </div>
