@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import echarts from 'echarts/lib/echarts';
+import * as echarts from 'echarts';
 
 class Businesses extends Component {
   state = {  }

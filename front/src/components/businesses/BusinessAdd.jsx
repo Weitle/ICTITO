@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 class BusinessAdd extends Component {
-  constructor(){
+  constructor(props){
+    super(props);
     this.state = {
-      business = {
+      business: {
         business_id: '',
         business_name: '',
         department: '',
