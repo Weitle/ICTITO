@@ -8,6 +8,8 @@ app.use(cors());
 // 引入路由
 const projectsRouter = require('./routers/projects');
 app.use('/projects', projectsRouter);
+const businessRouter = require('./routers/businesses');
+app.use('/businesses', businessRouter);
 
 app.listen(port, ()=>{
     console.log(`server is running on port ${port}...`);
