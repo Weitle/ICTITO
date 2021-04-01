@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Joi from 'joi-browser';
 import Input from './Input';
+import Select from './Select';
 
 class Form extends Component {
   state = {
@@ -11,10 +13,27 @@ class Form extends Component {
     }
   }
 
+  schema = {};
+
+  /**
+   *  onChange 事件响应方法
+   * @param {currentTarget:input} input 
+   */
   handleChange = ({currentTarget:input})=>{
     const data = {...this.state.data};
     data[input.name] = input.value;
-    this.setState(data);
+    this.setState({data});
+  }
+
+  handleSubmit = (e)=>{
+    e.preventDefault();
+    this.validate();
+    console.log(this.state.data);
+  }
+
+  validate = ()=>{
+    const result = Joi.validate(this.state.data, this.schema);
+    console.log(result);
   }
 
   /**
@@ -29,6 +48,17 @@ class Form extends Component {
             error={errors[name]}
             value={data[name]}
             onChange={this.handleChange} />;
+  }
+
+  /**
+   * 
+   * @param {string} name
+   * @param {string} label 
+   * @param {array} options 
+   */
+  renderSelect = (name, label, keyProp, valueProp, options=[])=>{
+    const {data, errors} = this.state;
+    return <Select name={name} label={label} error={errors[name]} value={data[name]} options={options} keyProp={keyProp} valueProp={valueProp}  onChange={this.handleChange} />;
   }
 
   /**
