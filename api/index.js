@@ -10,6 +10,8 @@ const projectsRouter = require('./routers/projects');
 app.use('/projects', projectsRouter);
 const businessRouter = require('./routers/businesses');
 app.use('/businesses', businessRouter);
+const departmentsRouter = require('./routers/departments');
+app.use('/departments', departmentsRouter);
 
 app.listen(port, ()=>{
     console.log(`server is running on port ${port}...`);

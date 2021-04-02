@@ -1,6 +1,8 @@
 import React from 'react';
-import Form from './../common/Form';
 import Joi from 'joi-browser';
+import axios from 'axios';
+
+import Form from './../common/Form';
 
 class BusinessForm extends Form {
   state = {
@@ -16,15 +18,11 @@ class BusinessForm extends Form {
     department: Joi.string().required()
   }
 
+  async componentDidMount(){
+    const {data:departments} = await axios.get("");
+  }
+
   render() {
-    const departments = [
-      {id: '0220301', name: '和平分公司'},
-      {id: '0220302', name: '河东分公司'},
-      {id: '0220303', name: '河西分公司'},
-      {id: '0220304', name: '南开分公司'},
-      {id: '0220305', name: '红桥分公司'},
-      {id: '0220306', name: '河北分公司'}
-    ];
     return (
       <form onSubmit={this.handleSubmit}>
         {this.renderInput('business_name', '商机名称')}
