@@ -8,7 +8,8 @@ class BusinessForm extends Form {
   state = {
     data: {
       business_name: '',
-      department: ''
+      department: '',
+      departments:[]
     },
     errors:{}
   }
@@ -19,10 +20,11 @@ class BusinessForm extends Form {
   }
 
   async componentDidMount(){
-    const {data:departments} = await axios.get("");
+    //const {data:departments} = await axios.get("");
   }
 
   render() {
+    const {departments} = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         {this.renderInput('business_name', '商机名称')}

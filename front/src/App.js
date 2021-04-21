@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import ProjectForm from './components/projects/ProjectForm';
 import Projects from './components/projects/Projects';
 import Contracts from './components/contracts/Contracts';
 import Businesses from './components/businesses/Businesses';
@@ -17,6 +18,7 @@ function App() {
       <Navbar />
       <main className="container mt-3">
         <Switch>
+          <Route path="/projects/new" component={ProjectForm} />
           <Route path="/projects" component={Projects} />
           <Route path="/contracts" component={Contracts} />
           <Route path="/businesses/add" component={BusinessForm} />
