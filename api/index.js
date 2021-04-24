@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-mongoose.connect("mongodb://localhost/ict_test")
+mongoose.connect("mongodb://localhost/ict")
         .then(()=>{
             console.log("Connected to MongoDB...");
         }).catch(err=>{
