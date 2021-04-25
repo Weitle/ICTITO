@@ -6,7 +6,7 @@ const port = process.env.ICTITO_PORT || 4021;
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+//app.use(express.urlencoded({extended: true}));
 
 mongoose.connect("mongodb://localhost/ict")
         .then(()=>{
@@ -22,6 +22,8 @@ const businessRouter = require('./routers/businesses');
 app.use('/businesses', businessRouter);
 const departmentsRouter = require('./routers/departments');
 app.use('/api/departments', departmentsRouter);
+const engineersRouter = require('./routers/engineers');
+app.use('/api/engineers', engineersRouter);
 
 app.listen(port, ()=>{
     console.log(`server is running on port ${port}...`);

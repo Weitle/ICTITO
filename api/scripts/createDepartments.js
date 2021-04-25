@@ -66,7 +66,7 @@ const jianshe = [
   {name: '政企建设单元', marketing: false, delivered: false}
 ];
 
-const fengoongsi1 = [
+const fengongsi1 = [
   {name: '管理层', marketing: false, delivered: false},
   {name: '政企客户事业部', marketing: true, delivered: false},
   {name: '网络部', marketing: false, delivered: true},
@@ -76,7 +76,7 @@ const fengoongsi1 = [
   {name: '移动维优中心', marketing: false, delivered: true},
   {name: '线路维护中心', marketing: false, delivered: true}
 ];
-const fengoongsi2 = [
+const fengongsi2 = [
   {name: '管理层', marketing: false, delivered: false},
   {name: '政企客户事业部', marketing: true, delivered: false},
   {name: '网络部', marketing: false, delivered: true},
@@ -108,7 +108,7 @@ mongoose.connect("mongodb://localhost/ict").then(()=>{
 }).catch(err=>{
   console.log('connect to database failed...');
 });
-createDepartments(level2_3, 1, '分公司').then(()=>{
+createDepartments(fengongsi2, 2, '宁河分公司').then(()=>{
   console.log('inset departments successed.')
 }).catch(err=>{
   console.log('insert departments failed: ${err.message}');
