@@ -1,5 +1,6 @@
 const express = require('express');
-const { validateEngineer } = require('../models/engineers');
+const { validateEngineer, Engineer } = require('../models/engineers');
+const {Department} = require('../models/departments');
 const router = express.Router();
 
 router.get('/', (req, res)=>{
@@ -9,6 +10,7 @@ router.get('/', (req, res)=>{
 });
 
 router.post('/', (req, res)=>{
+  // validate
   const {error} = validateEngineer(req.body);
   if(error){
     res.json({
@@ -17,6 +19,7 @@ router.post('/', (req, res)=>{
     });
     return;
   }
+  // 查找所在部门
   res.json({
     status: 0,
     message: 'create engineer successed'
