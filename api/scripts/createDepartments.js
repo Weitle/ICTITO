@@ -66,7 +66,7 @@ const jianshe = [
   {name: '政企建设单元', marketing: false, delivered: false}
 ];
 
-const fengoongsi1 = [
+const fengongsi1 = [
   {name: '管理层', marketing: false, delivered: false},
   {name: '政企客户事业部', marketing: true, delivered: false},
   {name: '网络部', marketing: false, delivered: true},
@@ -76,13 +76,12 @@ const fengoongsi1 = [
   {name: '移动维优中心', marketing: false, delivered: true},
   {name: '线路维护中心', marketing: false, delivered: true}
 ];
-const fengoongsi2 = [
+const fengongsi2 = [
   {name: '管理层', marketing: false, delivered: false},
   {name: '政企客户事业部', marketing: true, delivered: false},
   {name: '网络部', marketing: false, delivered: true},
   {name: '政企响应中心', marketing: false, delivered: true},
-  {name: '第一设备维护中心', marketing: false, delivered: true},
-  {name: '第二设备维护中心', marketing: false, delivered: true},
+  {name: '设备维护中心', marketing: false, delivered: true},
   {name: '移动维优中心', marketing: false, delivered: true},
   {name: '线路维护中心', marketing: false, delivered: true}
 ];
@@ -102,14 +101,42 @@ async function createDepartments(departments, superLevel, superName){
   return await Department.insertMany(departments);
 }
 
+const fgs1 = ['和平分公司', '河东分公司', '河西分公司', '南开分公司', '河北分公司', '西青分公司', '塘沽分公司', '蓟州分公司'];
+const fgs2 = ['红桥分公司', '东丽分公司', '津南分公司','北辰分公司','汉沽分公司','大港分公司','静海分公司', '武清分公司', '宝坻分公司', '宁河分公司'];
+
 
 mongoose.connect("mongodb://localhost/ict").then(()=>{
   console.log('connect to database...');
 }).catch(err=>{
   console.log('connect to database failed...');
 });
-createDepartments(level2_3, 1, '分公司').then(()=>{
-  console.log('inset departments successed.')
+/*
+createDepartments(jianshe, 2, '云网建设中心').then(()=>{
+  console.log(`inset departments successed.`)
 }).catch(err=>{
-  console.log('insert departments failed: ${err.message}');
-});
+  console.log(`insert departments failed: ${err.message}`);
+});*/
+/*
+fgs1.map(fgs=>{
+  createDepartments(fengongsi1, 2, fgs).then(()=>{
+    console.log(`inset departments of ${fgs} successed.`)
+  }).catch(err=>{
+    console.log(`insert departments of ${fgs} failed: ${err.message}`);
+  });
+});*/
+
+fgs2.map(fgs=>{
+  createDepartments(fengongsi2, 2, fgs).then(()=>{
+    console.log(`inset departments of ${fgs} successed.`)
+  }).catch(err=>{
+    console.log(`insert departments of ${fgs} failed: ${err.message}`);
+  });
+})
+
+/*
+Department.remove({level: 3}, (err, result)=>{
+  if(err){
+    console.log('remove failed.')
+  }
+  console.log('remove successed');
+});*/
