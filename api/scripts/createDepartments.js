@@ -63,7 +63,8 @@ const jiaofu = [
 ];
 const jianshe = [
   {name: '管理层', marketing: false, delivered: false},
-  {name: '政企建设单元', marketing: false, delivered: false}
+  {name: '政企建设单元', marketing: false, delivered: false},
+  {name: '稽查单元', marketing: false, delivered: false}
 ];
 
 const fengongsi1 = [
@@ -86,6 +87,8 @@ const fengongsi2 = [
   {name: '线路维护中心', marketing: false, delivered: true}
 ];
 
+const fgs1 = ['和平', '河东', '河西', '南开', '河北', '西青', '塘沽', '蓟州'];
+const fgs2 = ['红桥', '东丽', '津南', '北辰', '汉沽', '大港', '静海', '武清', '宝坻', '宁河'];
 
 async function createDepartments(departments, superLevel, superName){
   const superDepartment = await Department.findOne({level: superLevel, name: superName});
@@ -110,33 +113,30 @@ mongoose.connect("mongodb://localhost/ict").then(()=>{
 }).catch(err=>{
   console.log('connect to database failed...');
 });
-/*
-createDepartments(jianshe, 2, '云网建设中心').then(()=>{
-  console.log(`inset departments successed.`)
-}).catch(err=>{
-  console.log(`insert departments failed: ${err.message}`);
-});*/
-/*
-fgs1.map(fgs=>{
-  createDepartments(fengongsi1, 2, fgs).then(()=>{
-    console.log(`inset departments of ${fgs} successed.`)
-  }).catch(err=>{
-    console.log(`insert departments of ${fgs} failed: ${err.message}`);
-  });
-});*/
+
 
 fgs2.map(fgs=>{
-  createDepartments(fengongsi2, 2, fgs).then(()=>{
-    console.log(`inset departments of ${fgs} successed.`)
+  createDepartments(fengongsi2, 2, fgs+'分公司').then(()=>{
+    console.log(`create departments of ${fgs} succesed...`);
   }).catch(err=>{
-    console.log(`insert departments of ${fgs} failed: ${err.message}`);
+    console.log(`create departments of ${fgs} failed.`);
   });
-})
+});
+
+//process.exit(0);
 
 /*
-Department.remove({level: 3}, (err, result)=>{
-  if(err){
-    console.log('remove failed.')
-  }
-  console.log('remove successed');
+createDepartments(jianshe, 2, '云网建设中心').then(()=>{
+  console.log('inset departments successed.');
+}).catch(err=>{
+  console.log('insert departments failed: ${err.message}');
+});
+*/
+
+/*
+Department.remove({level: 3}).then(()=>{
+  console.log('remove departments successed.');
+  process.exit(0);
+}).catch(err=>{
+  console.log('remove departments failed.');
 });*/
