@@ -24,6 +24,8 @@ const departmentsRouter = require('./routers/departments');
 app.use('/api/departments', departmentsRouter);
 const engineersRouter = require('./routers/engineers');
 app.use('/api/engineers', engineersRouter);
+const authRouter = require('./routers/users');
+app.use('/api/auth', authRouter);
 
 app.listen(port, ()=>{
     console.log(`server is running on port ${port}...`);

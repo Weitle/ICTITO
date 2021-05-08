@@ -3,9 +3,9 @@ const Joi = require('joi');
 
 const engineerSchema = new mongoose.Schema({
   name: {type: String, minlength: 2, maxlength: 4, required: true},
-  email: {type: String, minlength: 2, maxlength:50, unique: true, required: true},
+  account: {type: String, minlength: 2, maxlength:50, unique: true, required: true},
   oacode: {type: String, required: true, unique: true},
-  phone:{type:String, required: true, unique: true, minlength: 11, maxlength: 11},
+  phone:{type:String, required: true, unique: true, match: /^1\d{10}$/},
   department_l2:{type: mongoose.Schema.Types.ObjectId, ref: 'Department'},
   department_l3: {type: mongoose.Schema.Types.ObjectId, ref: 'Department', default: null},
   isFulltime: {type: Boolean, default: false, required: true},
