@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark" style={{backgroundColor: '#e60027'}}>
+    <nav className="navbar navbar-expand-md navbar-dark" style={{backgroundColor: '#e60027'}}>
       <span className="navbar-brand">ICT自主交付与运营服务</span>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
@@ -18,6 +18,14 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/engineers">队伍建设</NavLink>
+          </li>
+        </ul>
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/auth/login">登录</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/auth/register">注册</NavLink>
           </li>
         </ul>
       </div>
