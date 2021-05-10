@@ -1,5 +1,6 @@
 import React from 'react';
-import Joi from 'joi-browser';
+//import Joi from 'joi-browser';
+import * as yup from 'yup';
 import Form from 'components/common/form';
 
 class Login extends Form {
@@ -10,14 +11,14 @@ class Login extends Form {
     },
     errors:{}
   }
-  schema = {
-    account: Joi.string().required(),
-    password: Joi.string().min(6)
-  };
-
+  schema = yup.object().shape({
+    account: yup.string().required("用户帐号不能为空。"),
+    password: yup.string().min(6, "密码长度不能小于6位。").required("密码不能为空。")
+  });
+  
   doSubmit = ()=>{
     const {data} = this.state;
-    console.log(data);
+    console.log("登录成功：", data.account);
   }
 
   render() {
