@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Joi = require('joi');
+//const Joi = require('joi');
+const yup = require('yup');
 
 const engineerSchema = new mongoose.Schema({
   name: {type: String, minlength: 2, maxlength: 4, required: true},
@@ -23,16 +24,16 @@ const Engineer = mongoose.model('Engineer', engineerSchema);
 
 function validateEngineer(engineer){
   const schema = {
-    name: Joi.string().min(2).max(4).required(),
-    email: Joi.string().min(2).max(50).required(),
-    oacode: Joi.string().required(),
-    phone: Joi.string().min(11).max(11).required(),
-    department: Joi.string().required(),
-    isFulltime: Joi.boolean().required(),
-    tags: Joi.array(),
-    certifications: Joi.array()
+    name: yup.string().min(2).max(4).required(),
+    email: yup.string().min(2).max(50).required(),
+    oacode: yup.string().required(),
+    phone: yup.string().min(11).max(11).required(),
+    department: yup.string().required(),
+    isFulltime: yup.boolean().required(),
+    tags: yup.array(),
+    certifications: yup.array()
   }
-  return Joi.validate(engineer, schema);
+  return schema.validate(engineer);
 }
 
 module.exports = {
