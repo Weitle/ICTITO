@@ -1,6 +1,7 @@
 import React from 'react';
 //import Joi from 'joi-browser';
 import * as yup from 'yup';
+import axios from 'axios';
 import Form from 'components/common/form';
 
 class Login extends Form {
@@ -18,7 +19,9 @@ class Login extends Form {
   
   doSubmit = ()=>{
     const {data} = this.state;
-    console.log("登录成功：", data.account);
+    axios.post("http://localhost:4021/api/auth/login", data).then(res=>{
+      console.log(res);
+    })
   }
 
   render() {

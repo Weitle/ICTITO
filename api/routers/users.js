@@ -75,17 +75,21 @@ router.post('/login', async (req, res)=>{
       message: err.message
     });
     return;
-  })
+  });
   
   // 查看用户是否存在
-  const user = await User.findOne({account: userInfo.account});
+  console.log(userInfo.account);
+  const user = await User.findOne({"account": `$
+  {userInfo.account}`});
+  console.log(user);
   if(!user){
     res.send({
       status: -1,
-      message: "用户帐号或密码错误，请重试。"
+      message: "用户帐号不存在，请重试。"
     });
     return;
   }
+
   // 验证用户账号和密码是否匹配
   const valid = await bcrypt.compare(userInfo.password, user.password);
   if(!valid){
@@ -95,6 +99,7 @@ router.post('/login', async (req, res)=>{
     });
     return;
   }
+  // 登录成功
   res.send({
     status: 0,
     message: "登录成功",
