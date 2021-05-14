@@ -19,6 +19,9 @@ const Navbar = () => {
           <li className="nav-item">
             <NavLink className="nav-link" to="/engineers">队伍建设</NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/abilities">自主能力</NavLink>
+          </li>
         </ul>
         <ul className="navbar-nav">
           <li className="nav-item">

@@ -5,14 +5,25 @@ const router = express.Router();
 const { Ability } = require('../models/abilities');
 
 
-router.get('/', (req, res)=>{
+router.get('/', async (req, res)=>{
+  const abilities = await Ability.find().select({code: 1, name: 1, level: 1, superId: 1});
+  if(!abilities){
+    res.json({
+      status: -1,
+      message: "未找到能力清单。"
+    });
+    return;
+  }
   res.json({
-    "abilities": "Abilities"
-  })
+    status: 0,
+    message: `共找到 ${abilities.length} 条自主能力。`,
+    abilities: abilities
+  });
 });
 
-router.post('/new', async (req, res)=>{
-  const { code, name, superId } = _.pick(req.body, ["code", "name", "level", "superId"]);
+router.post('/', async (req, res)=>{
+  const { code, name, superId } = _.pick(req.body, ["code", "name",  "superId"]);
+  
   const superAbility = await Ability.findById(superId);
   if(!superId){
     res.json({
